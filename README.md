@@ -14,18 +14,14 @@ Building an own Android push messaging service to receive data messages in the b
 Add the below dependency into your module level `build.gradle` file
 
 ```gradle
-implementation 'com.aslam:tflite-image:+'
+implementation 'com.aslam:scm:+'
 ```
 
-Make sure you have added no compress config for your model files
-```gradle
-android {
-    ....
-    aaptOptions {
-        noCompress "tflite"
-        noCompress "lite"
-    }
-}
+Make sure you have set `usesCleartextTraffic` to true in `AndroidManifest.xml` file
+```xml
+<application
+    ...
+    android:usesCleartextTraffic="true">
 ```
 
 ### Simple Usage
@@ -33,15 +29,14 @@ android {
 You need to pass the model file, label text and the model type.
 
 ```java
-TFLiteImage tfLite = TFLiteImage.getInstance(activity, "your_model_file.tflite", "labels.txt", TFLiteImage.TYPE.QUANT, IMG_DIM_SIZE);
-List<Map<String, String>> results = tfLite.predictImage(image view or bitmap image);
-```
-> `IMG_DIM_SIZE` is 299 or 224 according to your model, you can visualize your model data to check `IMG_DIM_SIZE`.
-
-Inception model types
-```java
-TFLiteImage.TYPE.QUANT
-TFLiteImage.TYPE.FLOAT
+SCMessaging scMessaging = new SCMessaging(this, "https://192.168.8.200:3000", "user_id");
+scMessaging.setListener(new SCMessaging.Listener() {
+    @Override
+    public void onMessageData(String data) {
+        Log.d("onMessageData", data);
+    }
+});
+scMessaging.connect();
 ```
 
 ### Use case
