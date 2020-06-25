@@ -1,4 +1,4 @@
-# SCM
+# SCM - SCMessaging
 Socket Cloud Messaging for Android. <br/>
 Android push notification service based on [io-session-handler](https://github.com/aslamanver/io-session-handler)
 
