@@ -5,8 +5,6 @@
 [ ![Download](https://api.bintray.com/packages/aslam/android/tflite-image/images/download.svg) ](https://bintray.com/aslam/android/tflite-image) [![](https://jitpack.io/v/aslamanver/tflite-image.svg)](https://jitpack.io/#aslamanver/tflite-image) [![Build Status](https://travis-ci.com/aslamanver/tflite-image.svg?branch=master)](https://travis-ci.com/aslamanver/tflite-image)
 
 #### SCM - Socket Cloud Messaging for Android | Socket.IO
-
-Socket Cloud Messaging for Android. <br/>
 Android push notification service based on [io-session-handler](https://github.com/aslamanver/io-session-handler)
 
 Building an own Android push messaging service to receive data messages in the background in real-time and alternate for Firebase Cloud Messaging. 
