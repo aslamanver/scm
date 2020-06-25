@@ -1,20 +1,15 @@
 # SCM - SCMessaging
-Socket Cloud Messaging for Android. <br/>
-Android push notification service based on [io-session-handler](https://github.com/aslamanver/io-session-handler)
 
 ![https://i.imgur.com/wyb0Vv7.png](https://i.imgur.com/wyb0Vv7.png)
 
 [ ![Download](https://api.bintray.com/packages/aslam/android/tflite-image/images/download.svg) ](https://bintray.com/aslam/android/tflite-image) [![](https://jitpack.io/v/aslamanver/tflite-image.svg)](https://jitpack.io/#aslamanver/tflite-image) [![Build Status](https://travis-ci.com/aslamanver/tflite-image.svg?branch=master)](https://travis-ci.com/aslamanver/tflite-image)
 
-TFLite-Image for Android - TensorFlow Lite inception model image library for Android
+#### SCM - Socket Cloud Messaging for Android | Socket.IO
 
-Move your trained model to asset folder or prepare a new image inception model using Google [teachablemachine](https://teachablemachine.withgoogle.com) machine learning library.
+Socket Cloud Messaging for Android. <br/>
+Android push notification service based on [io-session-handler](https://github.com/aslamanver/io-session-handler)
 
-You can use the sample inception quant or float model that we used in this project with 299 image dimension.
-
-- [inception_quant.tflite](https://github.com/aslamanver/tflite-image/blob/master/app/src/main/assets/inception_quant.tflite)
-- [inception_float.tflite](https://github.com/aslamanver/tflite-image/blob/master/app/src/main/assets/inception_float.tflite)
-- [labels.txt](https://github.com/aslamanver/tflite-image/blob/master/app/src/main/assets/labels.txt)<br/>
+Building an own Android push messaging service to receive data messages in the background in real-time and alternate for Firebase Cloud Messaging. 
 
 ### Initialization
 
