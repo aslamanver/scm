@@ -30,12 +30,14 @@ You need to pass the model file, label text and the model type.
 
 ```java
 SCMessaging scMessaging = new SCMessaging(this, "https://192.168.8.200:3000", "user_id");
+
 scMessaging.setListener(new SCMessaging.Listener() {
     @Override
     public void onMessageData(String data) {
         Log.d("onMessageData", data);
     }
 });
+
 scMessaging.connect();
 ```
 
