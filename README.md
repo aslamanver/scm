@@ -32,7 +32,7 @@ Create a `SCMessaging` instance with context, socket server url and device token
 SCMessaging scMessaging = new SCMessaging(this, "http://192.168.8.200:3000", "user_token");
 ```
 
-Implement `onMessageData` method to listen the push messages.
+Implement `onMessageData` method to listen the server push messages.
 
 ```java
 scMessaging.setListener(new SCMessaging.Listener() {
