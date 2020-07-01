@@ -43,7 +43,7 @@ scMessaging.setListener(new SCMessaging.Listener() {
 });
 ```
 
-Finally call the connect method to start the socket connection
+Finally call the connect method to start the socket connection.
 
 ```java
 scMessaging.connect();
