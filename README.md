@@ -26,7 +26,7 @@ Make sure you have set `usesCleartextTraffic` to true in `AndroidManifest.xml` f
 
 ### Simple Usage
 
-Create an instance with context, socket server url and device token.
+Create a `SCMessaging` instance with context, socket server url and device token.
 
 ```java
 SCMessaging scMessaging = new SCMessaging(this, "http://192.168.8.200:3000", "user_token");
