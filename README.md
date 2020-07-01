@@ -52,7 +52,7 @@ scMessaging.connect();
 ### Use case
 
 ### Demonstration
-[![Screenshot](/screenshots/1.png)](/screenshots/1.gif)
+[![Screenshot](/screenshots/1.gif)](/screenshots/1.gif)
 
 Test the sample app that I made for you: [TFLite-Image-v1.0.apk](https://drive.google.com/file/d/1YFNNx25bvUhahTkaL_TrRV3MLaQCXedT/view?usp=sharing)
 
