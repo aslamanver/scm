@@ -26,42 +26,30 @@ Make sure you have set `usesCleartextTraffic` to true in `AndroidManifest.xml` f
 
 ### Simple Usage
 
-You need to pass the model file, label text and the model type.
+Create an instance with context, socket server url and device token.
 
 ```java
-SCMessaging scMessaging = new SCMessaging(this, "https://192.168.8.200:3000", "user_id");
+SCMessaging scMessaging = new SCMessaging(this, "http://192.168.8.200:3000", "user_token");
+```
 
+Imlement the `onMessageData` method to listen the push messages.
+
+```java
 scMessaging.setListener(new SCMessaging.Listener() {
     @Override
     public void onMessageData(String data) {
         Log.d("onMessageData", data);
     }
 });
+```
 
+Finally call the connect method to start the socket connection
+
+```java
 scMessaging.connect();
 ```
 
 ### Use case
-
-```java
-TFLiteImage tfLite = TFLiteImage.getInstance(this, "inception_quant.tflite", "labels.txt", TFLiteImage.TYPE.QUANT);
-List<Map<String, String>> results = tfLite.predictImage(binding.imgView);
-
-for (Map<String, String> map : results) {
-    Log.e("RESULT", map.get("LABEL") + " - " + map.get("CONFIDENCE"));
-}
-```
-
-Result
-
-```java
-map.get("LABEL");
-map.get("CONFIDENCE");
-```
-
-Sunglass - 99% <br/>
-Glass - 85% <br/>
-Jeans - 70% <br/>
 
 ### Demonstration
 [![Screenshot](/screenshots/1.png)](/screenshots/1.png)

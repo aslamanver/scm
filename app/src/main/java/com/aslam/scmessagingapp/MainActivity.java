@@ -7,6 +7,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
@@ -65,45 +66,41 @@ public class MainActivity extends AppCompatActivity {
 
                 uiLog("Staring...");
 
-                new Handler().postDelayed(new Runnable() {
+                scMessaging = new SCMessaging(getApplicationContext(), serverURL, token);
+
+                scMessaging.setListener(new SCMessaging.Listener() {
                     @Override
-                    public void run() {
-
-                        scMessaging = new SCMessaging(getApplicationContext(), serverURL, token);
-
-                        scMessaging.setListener(new SCMessaging.Listener() {
+                    public void onMessageData(final String data) {
+                        runOnUiThread(new Runnable() {
                             @Override
-                            public void onMessageData(final String data) {
-                                runOnUiThread(new Runnable() {
-                                    @Override
-                                    public void run() {
-                                        uiLog("onMessageData => " + data);
-                                    }
-                                });
+                            public void run() {
+                                uiLog("onMessageData => " + data);
                             }
                         });
-
-                        try {
-                            scMessaging.connect();
-                            uiLog("Connecting...");
-                            final Handler connectionHandler = new Handler();
-                            connectionHandler.postDelayed(new Runnable() {
-                                @Override
-                                public void run() {
-                                    if (scMessaging.connected()) {
-                                        uiLog("Connected.");
-                                        connectionHandler.removeCallbacks(this);
-                                        return;
-                                    }
-                                    connectionHandler.postDelayed(this, 1000);
-                                    uiLog("Retrying...");
-                                }
-                            }, 1000);
-                        } catch (URISyntaxException e) {
-                            uiLog(e.getMessage());
-                        }
                     }
-                }, 2000);
+                });
+
+                try {
+                    binding.btnConnect.setEnabled(false);
+                    scMessaging.connect();
+                    uiLog("Connecting...");
+                    final Handler connectionHandler = new Handler();
+                    connectionHandler.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            if (scMessaging != null && scMessaging.connected()) {
+                                uiLog("Connected.");
+                                binding.btnConnect.setEnabled(true);
+                                connectionHandler.removeCallbacks(this);
+                                return;
+                            }
+                            connectionHandler.postDelayed(this, 1000);
+                            uiLog("Retrying...");
+                        }
+                    }, 1000);
+                } catch (URISyntaxException e) {
+                    uiLog(e.getMessage());
+                }
             }
         });
     }

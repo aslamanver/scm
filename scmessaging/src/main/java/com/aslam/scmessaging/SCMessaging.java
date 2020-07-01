@@ -88,18 +88,11 @@ public class SCMessaging {
     }
 
     private void confirmDelivery(String data) {
-        JSONObject object = new JSONObject();
-        try {
-            object.put("token", token);
-            object.put("data", data);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        mSocket.emit("push_message_delivery", object.toString());
+        mSocket.emit("push_message_delivery", getJSONData(data).toString());
     }
 
-    public void sendClientData(String clientData) {
-        mSocket.emit("client_data", clientData);
+    public void sendClientData(String data) {
+        mSocket.emit("client_data", getJSONData(data).toString());
     }
 
     public void disconnect() {
@@ -113,5 +106,16 @@ public class SCMessaging {
 
     public Socket getSocketEngine() {
         return mSocket;
+    }
+
+    private JSONObject getJSONData(String data) {
+        JSONObject object = new JSONObject();
+        try {
+            object.put("token", token);
+            object.put("data", data);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return object;
     }
 }
