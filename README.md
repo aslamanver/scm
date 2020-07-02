@@ -2,7 +2,7 @@
 
 ![https://i.imgur.com/wyb0Vv7.png](https://i.imgur.com/wyb0Vv7.png)
 
-[ ![Download](https://api.bintray.com/packages/aslam/android/tflite-image/images/download.svg) ](https://bintray.com/aslam/android/tflite-image) [![](https://jitpack.io/v/aslamanver/tflite-image.svg)](https://jitpack.io/#aslamanver/tflite-image) [![Build Status](https://travis-ci.com/aslamanver/tflite-image.svg?branch=master)](https://travis-ci.com/aslamanver/tflite-image)
+[ ![Download](https://api.bintray.com/packages/aslam/android/scm/images/download.svg) ](https://bintray.com/aslam/android/scm) [![](https://jitpack.io/v/aslamanver/scm.svg)](https://jitpack.io/#aslamanver/scm) [![Build Status](https://travis-ci.com/aslamanver/scm.svg?branch=master)](https://travis-ci.com/aslamanver/scm)
 
 #### SCM - Socket Cloud Messaging for Android | Socket.IO
 Android push notification service based on [io-session-handler](https://github.com/aslamanver/io-session-handler)
