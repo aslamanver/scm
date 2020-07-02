@@ -54,7 +54,7 @@ scMessaging.connect();
 ### Demonstration
 [![Screenshot](/screenshots/1.gif)](/screenshots/1.gif)
 
-Test the sample app that I made for you: [TFLite-Image-v1.0.apk](https://drive.google.com/file/d/1YFNNx25bvUhahTkaL_TrRV3MLaQCXedT/view?usp=sharing)
+Test the sample app that I made for you: [SCM-Demo-v1.0.apk](https://drive.google.com/file/d/1UMNVBjr9v5UrJ7smoEEPSpVfbkAOMAxi/view?usp=sharing)
 
 <hr/>
 
