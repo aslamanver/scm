@@ -49,7 +49,35 @@ Finally call the connect method to start the socket connection.
 scMessaging.connect();
 ```
 
-### Use case
+### Advanced Usage
+
+You can override all the methods in `SCMessaging.Listener()` to notify the program from more events as below.
+
+```java
+scMessaging.setListener(new SCMessaging.Listener() {
+
+    @Override
+    public void onMessageData(String data) {
+
+    }
+
+    @Override
+    public void onConnect(String serverURL) {
+
+    }
+
+    @Override
+    public void onDisconnect(String serverURL) {
+
+    }
+
+    @Override
+    public void onConnectError(Exception ex) {
+
+    }
+});
+```
+
 
 ### Demonstration
 [![Screenshot](/screenshots/1.gif)](/screenshots/1.gif)
