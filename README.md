@@ -49,7 +49,50 @@ Finally call the connect method to start the socket connection.
 scMessaging.connect();
 ```
 
-### Use case
+### Advanced Usage
+
+Override all the methods in `SCMessaging.Listener()` to notify the program from more events as below.
+
+```java
+scMessaging.setListener(new SCMessaging.Listener() {
+
+    @Override
+    public void onMessageData(String data) {
+
+    }
+
+    @Override
+    public void onConnect(String serverURL) {
+
+    }
+
+    @Override
+    public void onDisconnect(String serverURL) {
+
+    }
+
+    @Override
+    public void onConnectError(Exception ex) {
+
+    }
+});
+```
+
+### More Options
+
+This is the constructor for passing more options to the Socket.IO engine, the options variable should be an `IO.Options()` object, if it's not included in your project, you can add the library in the `build.gradle` file.
+
+```java
+IO.Options options = new IO.Options();
+options.reconnection = false;
+SCMessaging scMessaging = new SCMessaging(this, "http://192.168.8.200:3000", "user_token", options);
+```
+
+```gradle
+implementation ('io.socket:socket.io-client:1.0.0') {
+    exclude group: 'org.json', module: 'json'
+}
+```
 
 ### Demonstration
 [![Screenshot](/screenshots/1.gif)](/screenshots/1.gif)
