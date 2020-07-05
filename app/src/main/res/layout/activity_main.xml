@@ -17,30 +17,37 @@
             android:padding="10dp">
 
             <EditText
-                android:id="@+id/edtToken"
+                android:id="@+id/edtServer"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="#FFF"
-                android:hint="Token" />
+                android:hint="Server URL" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
                 <EditText
-                    android:id="@+id/edtServer"
+                    android:id="@+id/edtToken"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:background="#FFF"
-                    android:hint="Server URL" />
+                    android:hint="Token" />
 
                 <Button
                     android:id="@+id/btnConnect"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Connect" />
+
+                <Button
+                    android:id="@+id/btnDisconnect"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Disconnect" />
+
             </LinearLayout>
 
         </LinearLayout>

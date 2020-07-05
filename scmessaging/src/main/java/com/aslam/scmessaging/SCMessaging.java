@@ -3,14 +3,18 @@ package com.aslam.scmessaging;
 import android.content.Context;
 import android.util.Log;
 
-import com.github.nkzawa.emitter.Emitter;
-import com.github.nkzawa.socketio.client.IO;
-import com.github.nkzawa.socketio.client.Socket;
+// import com.github.nkzawa.emitter.Emitter;
+// import com.github.nkzawa.socketio.client.IO;
+// import com.github.nkzawa.socketio.client.Socket;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.net.URISyntaxException;
+
+import io.socket.client.IO;
+import io.socket.client.Socket;
+import io.socket.emitter.Emitter;
 
 /**
  * Add the below line to AndroidManifest.xml file
@@ -22,14 +26,41 @@ public class SCMessaging {
     private String serverURL;
     private String token;
     private Socket mSocket;
+    private IO.Options options;
     private Listener listener;
     private boolean isDebug = true;
 
-    public interface Listener {
-        void onMessageData(String data);
+    public abstract static class Listener {
+
+        public abstract void onMessageData(String data);
+
+        public void onConnect(String serverURL) {
+        }
+
+        public void onDisconnect(String serverURL) {
+        }
+
+        public void onConnectError(Exception ex) {
+        }
     }
 
-    public SCMessaging(Context context, String serverURL, String token) {
+    public SCMessaging(Context context, String serverURL, String token) throws URISyntaxException {
+        init(context, serverURL, token);
+        initSocket(new IO.Options());
+    }
+
+    public SCMessaging(Context context, String serverURL, String token, IO.Options options) throws URISyntaxException {
+        init(context, serverURL, token);
+        initSocket(options);
+    }
+
+    private void initSocket(IO.Options opts) throws URISyntaxException {
+        options = opts;
+        setDefaultOptions();
+        mSocket = IO.socket(serverURL, options);
+    }
+
+    private void init(Context context, String serverURL, String token) {
         this.context = context;
         this.serverURL = serverURL;
         this.token = token;
@@ -40,6 +71,7 @@ public class SCMessaging {
         return new Listener() {
             @Override
             public void onMessageData(String data) {
+                log("onMessageData => " + data);
             }
         };
     }
@@ -58,20 +90,19 @@ public class SCMessaging {
         }
     }
 
-    public void connect() throws URISyntaxException {
-        mSocket = IO.socket(serverURL, socketOptions());
+    public void connect() {
         setMessageListener();
         mSocket.connect();
     }
 
-    private IO.Options socketOptions() {
-        IO.Options opts = new IO.Options();
-        opts.query = "token=" + token;
-        opts.forceNew = true;
-        return opts;
+    private void setDefaultOptions() {
+        options.query = "token=" + token;
+        options.forceNew = true;
+        SocketSSL.set(options);
     }
 
     private void setMessageListener() {
+
         mSocket.on("push_message", new Emitter.Listener() {
             @Override
             public void call(Object... args) {
@@ -79,10 +110,32 @@ public class SCMessaging {
                 try {
                     data = (String) args[0];
                 } catch (Exception ex) {
+                    ex.printStackTrace();
                 }
-                log(data);
+                log("onMessageData => " + data);
                 listener.onMessageData(data);
                 confirmDelivery(data);
+            }
+        });
+
+        mSocket.on(Socket.EVENT_DISCONNECT, new Emitter.Listener() {
+            @Override
+            public void call(Object... args) {
+                listener.onDisconnect(serverURL);
+            }
+        });
+
+        mSocket.on(Socket.EVENT_CONNECT, new Emitter.Listener() {
+            @Override
+            public void call(Object... args) {
+                listener.onConnect(serverURL);
+            }
+        });
+
+        mSocket.on(Socket.EVENT_CONNECT_ERROR, new Emitter.Listener() {
+            @Override
+            public void call(Object... args) {
+                listener.onConnectError((Exception) args[0]);
             }
         });
     }
@@ -98,6 +151,10 @@ public class SCMessaging {
     public void disconnect() {
         mSocket.disconnect();
         mSocket.off("push_message");
+        mSocket.off(Socket.EVENT_CONNECT);
+        mSocket.off(Socket.EVENT_DISCONNECT);
+        mSocket.off(Socket.EVENT_CONNECT_ERROR);
+        listener.onDisconnect(serverURL);
     }
 
     public boolean connected() {
