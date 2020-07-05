@@ -78,6 +78,8 @@ scMessaging.setListener(new SCMessaging.Listener() {
 });
 ```
 
+### More Options
+
 This is the constructor for passing more options to the Socket.IO engine, the options variable should be an `IO.Options()` object, if it's not included in your project, you can add the library in the `build.gradle` file.
 
 ```java
