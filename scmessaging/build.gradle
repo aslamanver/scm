@@ -6,7 +6,7 @@ publish {
     repoName = 'android'
     groupId = 'com.aslam'
     artifactId = 'scm'
-    publishVersion = '1.0.0'
+    publishVersion = '1.0.1'
     desc = 'Socket Cloud Messaging for Android'
     website = 'https://github.com/aslamanver/scm'
 }
@@ -19,7 +19,7 @@ android {
         minSdkVersion 22
         targetSdkVersion 29
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.1"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles 'consumer-rules.pro'
