@@ -1,18 +1,14 @@
 package com.aslam.scmessagingapp;
 
+import android.content.SharedPreferences;
+import android.os.Bundle;
+import android.preference.PreferenceManager;
+import android.view.View;
+
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
-import android.content.SharedPreferences;
-import android.os.Bundle;
-import android.os.Handler;
-import android.preference.PreferenceManager;
-import android.util.Log;
-import android.view.View;
-import android.widget.Toast;
-
 import com.aslam.scmessaging.SCMessaging;
-import com.aslam.scmessaging.SocketSSL;
 import com.aslam.scmessagingapp.databinding.ActivityMainBinding;
 
 import java.net.URISyntaxException;
@@ -26,6 +22,21 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+
+        // Simple Usage
+        // scMessaging = new SCMessaging(getApplicationContext(), "http://192.168.8.200:3000", "Token-1");
+        //     scMessaging.setListener(new SCMessaging.Listener() {
+        //     @Override
+        //     public void onMessageData(final String data) {
+        //         runOnUiThread(new Runnable() {
+        //             @Override
+        //             public void run() {
+        //                 uiLog(data);
+        //             }
+        //         });
+        //     }
+        // });
+        // scMessaging.connect();
 
         final SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(this);
 
@@ -139,21 +150,5 @@ public class MainActivity extends AppCompatActivity {
 
     private void uiLog(String data) {
         binding.txtLog.setText(data + "\n" + binding.txtLog.getText().toString());
-    }
-
-    public void simpleUsage() throws URISyntaxException {
-        scMessaging = new SCMessaging(getApplicationContext(), "http://192.168.8.200:3000", "Token-1");
-        scMessaging.setListener(new SCMessaging.Listener() {
-            @Override
-            public void onMessageData(final String data) {
-                runOnUiThread(new Runnable() {
-                    @Override
-                    public void run() {
-                        uiLog(data);
-                    }
-                });
-            }
-        });
-        scMessaging.connect();
     }
 }
