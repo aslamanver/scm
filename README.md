@@ -51,7 +51,7 @@ scMessaging.connect();
 
 ### Advanced Usage
 
-You can override all the methods in `SCMessaging.Listener()` to notify the program from more events as below.
+Override all the methods in `SCMessaging.Listener()` to notify the program from more events as below.
 
 ```java
 scMessaging.setListener(new SCMessaging.Listener() {
@@ -78,6 +78,17 @@ scMessaging.setListener(new SCMessaging.Listener() {
 });
 ```
 
+This is the constructor for passing more options to the Socket.IO engine, the options variable should be a `IO.Options()` object, if it's not included in your project, you can add the library in the `build.gradle` file.
+
+```java
+SCMessaging scMessaging = new SCMessaging(this, "http://192.168.8.200:3000", "user_token", options);
+```
+
+```gradle
+implementation ('io.socket:socket.io-client:1.0.0') {
+    exclude group: 'org.json', module: 'json'
+}
+```
 
 ### Demonstration
 [![Screenshot](/screenshots/1.gif)](/screenshots/1.gif)
