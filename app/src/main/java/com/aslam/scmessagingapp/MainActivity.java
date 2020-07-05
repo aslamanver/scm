@@ -135,12 +135,6 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
-
-        try {
-            simpleUsage();
-        } catch (URISyntaxException e) {
-            e.printStackTrace();
-        }
     }
 
     private void uiLog(String data) {
