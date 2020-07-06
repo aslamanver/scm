@@ -50,6 +50,12 @@
 
             </LinearLayout>
 
+            <Button
+                android:id="@+id/btnService"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Start SCM Service" />
+
         </LinearLayout>
 
         <ScrollView

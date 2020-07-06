@@ -8,6 +8,7 @@ import android.view.View;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.databinding.DataBindingUtil;
 
+import com.aslam.scmessaging.SCMService;
 import com.aslam.scmessaging.SCMessaging;
 import com.aslam.scmessagingapp.databinding.ActivityMainBinding;
 
@@ -144,6 +145,13 @@ public class MainActivity extends AppCompatActivity {
                 if (scMessaging != null) {
                     scMessaging.disconnect();
                 }
+            }
+        });
+
+        binding.btnService.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                SCMService.start(getApplicationContext(), MySCMService.class);
             }
         });
     }
