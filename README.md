@@ -97,7 +97,7 @@ implementation ('io.socket:socket.io-client:1.0.0') {
 ### Demonstration
 [![Screenshot](/screenshots/2.gif)](/screenshots/2.gif)
 
-Test the sample app that I made for you: [SCM-Demo-v1.0.apk](https://drive.google.com/file/d/1UMNVBjr9v5UrJ7smoEEPSpVfbkAOMAxi/view?usp=sharing)
+Test the sample app that I made for you: [SCM-Demo-v1.0.1.apk](https://drive.google.com/file/d/1BYMLQG4nX-d6qAYG_zSeEMME0ZxVXneG/view?usp=sharing)
 
 <hr/>
 
