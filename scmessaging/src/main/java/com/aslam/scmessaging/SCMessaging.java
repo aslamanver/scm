@@ -108,7 +108,11 @@ public class SCMessaging {
             public void call(Object... args) {
                 String data = "NO_DATA";
                 try {
-                    data = (String) args[0];
+                    if(args[0] instanceof JSONObject) {
+                        data = args[0].toString();
+                    } else {
+                        data = (String) args[0];
+                    }
                 } catch (Exception ex) {
                     ex.printStackTrace();
                 }
